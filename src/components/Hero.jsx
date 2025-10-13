@@ -44,7 +44,7 @@ const Hero = () => {
         )}
       />
 
-      <div className="section-padding relative z-10 pt-20 lg:pt-24">
+      <div className="section-padding relative z-10 pt-24 sm:pt-28 lg:pt-0">
         <div className="grid items-center grid-cols-1 gap-8 lg:gap-12 lg:grid-cols-2">
           {/* Text Content */}
           <motion.div
