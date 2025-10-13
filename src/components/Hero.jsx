@@ -13,7 +13,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative bg-[#FCF8F1] bg-opacity-30 h-screen flex items-center overflow-hidden">
+    <section id="hero" className="relative bg-[#FCF8F1] bg-opacity-30 min-h-screen flex items-center overflow-hidden">
       {/* Grid Pattern Background */}
       <GridPattern
         width={60}
@@ -44,7 +44,7 @@ const Hero = () => {
         )}
       />
 
-      <div className="section-padding relative z-10 pt-24 sm:pt-28 lg:pt-0">
+      <div className="section-padding relative z-10 py-24 sm:py-28 lg:py-32">
         <div className="grid items-center grid-cols-1 gap-8 lg:gap-12 lg:grid-cols-2">
           {/* Text Content */}
           <motion.div
