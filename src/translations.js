@@ -4,6 +4,7 @@ const translations = {
       home: 'Home',
       courses: 'Courses',
       about: 'About',
+      materials: 'Materials',
       contact: 'Contact',
     },
     hero: {
@@ -122,6 +123,7 @@ const translations = {
       home: 'Ana Səhifə',
       courses: 'Kurslar',
       about: 'Haqqımızda',
+      materials: 'Materiallar',
       contact: 'Əlaqə',
     },
     hero: {
@@ -240,6 +242,7 @@ const translations = {
       home: 'Главная',
       courses: 'Курсы',
       about: 'О нас',
+      materials: 'Материалы',
       contact: 'Контакты',
     },
     hero: {

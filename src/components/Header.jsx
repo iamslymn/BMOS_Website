@@ -94,6 +94,12 @@ const Header = () => {
               {t('nav.about')}
             </button>
             <button
+              onClick={() => scrollToSection('materials')}
+              className="text-base text-white transition-all duration-200 hover:text-white/80 font-medium"
+            >
+              {t('nav.materials')}
+            </button>
+            <button
               onClick={() => scrollToSection('contact')}
               className="text-base text-white transition-all duration-200 hover:text-white/80 font-medium"
             >
@@ -160,6 +166,12 @@ const Header = () => {
               className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
             >
               {t('nav.about')}
+            </button>
+            <button
+              onClick={() => scrollToSection('materials')}
+              className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              {t('nav.materials')}
             </button>
             <button
               onClick={() => scrollToSection('contact')}

@@ -61,7 +61,7 @@ const Materials = () => {
   };
 
   return (
-    <section className="py-20 bg-light-gray" ref={ref}>
+    <section id="materials" className="py-20 bg-light-gray" ref={ref}>
       <div className="section-padding">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
