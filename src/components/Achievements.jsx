@@ -11,6 +11,17 @@ const Achievements = () => {
     threshold: 0.3,
     triggerOnce: true,
   });
+  
+  // Student results images - duplicate the array for infinite scroll effect
+  const studentResults = [
+    { id: 1, image: '/assets/Results/result1.png', alt: 'Student Result 1' },
+    { id: 2, image: '/assets/Results/result2.png', alt: 'Student Result 2' },
+    { id: 3, image: '/assets/Results/result3.png', alt: 'Student Result 3' },
+    { id: 4, image: '/assets/Results/result4.png', alt: 'Student Result 4' },
+  ];
+  
+  // Duplicate the array for seamless infinite scroll
+  const duplicatedResults = [...studentResults, ...studentResults];
 
   const achievements = [
     {
@@ -144,6 +155,56 @@ const Achievements = () => {
             </motion.div>
           ))}
         </div>
+        
+        {/* Student Results Infinite Carousel */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="mt-16"
+        >
+          {/* Infinite Scrolling Carousel Container */}
+          <div className="relative overflow-hidden">
+            {/* Gradient Masks for smooth edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#1a237e] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#1a237e] to-transparent z-10 pointer-events-none" />
+            
+            {/* Scrolling Container */}
+            <motion.div
+              className="flex gap-6"
+              animate={{
+                x: ['0%', '-50%'],
+              }}
+              transition={{
+                x: {
+                  duration: 30,
+                  repeat: Infinity,
+                  ease: "linear",
+                  repeatType: "loop",
+                },
+              }}
+            >
+              {/* First set of images */}
+              {[...duplicatedResults, ...duplicatedResults].map((result, index) => (
+                <div
+                  key={`${result.id}-${index}`}
+                  className="flex-shrink-0 w-96 group" // w-96 = 384px
+                >
+                  <div className="relative overflow-hidden rounded-xl transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-2xl">
+                    <img
+                      src={result.image}
+                      alt={result.alt}
+                      className="w-[384px] h-[392px] object-cover"
+                      style={{ objectPosition: 'center' }}
+                    />
+                    {/* Optional: Add a subtle overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

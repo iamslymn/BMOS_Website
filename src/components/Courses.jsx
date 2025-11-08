@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useLanguage } from '../contexts/LanguageContext';
-import { FaCalculator, FaBook, FaChartLine, FaChartBar, FaLaptopCode, FaTimes, FaWhatsapp } from 'react-icons/fa';
+import { FaTimes, FaWhatsapp } from 'react-icons/fa';
 
 const Courses = () => {
   const { t } = useLanguage();
@@ -14,35 +14,35 @@ const Courses = () => {
 
   const courses = [
     {
-      icon: <FaCalculator className="text-4xl" />,
+      image: '/assets/Our Programs/SAT Math.png',
       title: t('courses.satMath.title'),
       description: t('courses.satMath.description'),
       details: t('courses.satMath.details'),
       color: 'from-blue-500 to-blue-600',
     },
     {
-      icon: <FaBook className="text-4xl" />,
+      image: '/assets/Our Programs/SAT Verbal.png',
       title: t('courses.satVerbal.title'),
       description: t('courses.satVerbal.description'),
       details: t('courses.satVerbal.details'),
       color: 'from-purple-500 to-purple-600',
     },
     {
-      icon: <FaChartLine className="text-4xl" />,
+      image: '/assets/Our Programs/AP Calculus BC.png',
       title: t('courses.apCalculus.title'),
       description: t('courses.apCalculus.description'),
       details: t('courses.apCalculus.details'),
       color: 'from-green-500 to-green-600',
     },
     {
-      icon: <FaChartBar className="text-4xl" />,
+      image: '/assets/Our Programs/AP Statistics.png',
       title: t('courses.apStatistics.title'),
       description: t('courses.apStatistics.description'),
       details: t('courses.apStatistics.details'),
       color: 'from-orange-500 to-orange-600',
     },
     {
-      icon: <FaLaptopCode className="text-4xl" />,
+      image: '/assets/Our Programs/AP Computer Science.png',
       title: t('courses.apCompSci.title'),
       description: t('courses.apCompSci.description'),
       details: t('courses.apCompSci.details'),
@@ -106,17 +106,18 @@ const Courses = () => {
               onClick={() => setSelectedCourse(course)}
               className="bg-white rounded-2xl shadow-lg overflow-hidden group cursor-pointer"
             >
-              {/* Gradient Header */}
-              <div className={`h-32 bg-gradient-to-r ${course.color} relative overflow-hidden`}>
+              {/* Image Header */}
+              <div className="h-48 relative overflow-hidden bg-gray-100">
                 <motion.div
-                  className="absolute inset-0 bg-white/20"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.6 }}
+                  className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0"
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
                 />
-                <div className="flex items-center justify-center h-full text-white">
-                  {course.icon}
-                </div>
+                <img 
+                  src={course.image} 
+                  alt={course.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
               
               {/* Card Content */}
@@ -189,20 +190,27 @@ const Courses = () => {
                 className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
               >
                 {/* Modal Header */}
-                <div className={`bg-gradient-to-r ${selectedCourse.color} p-4 sm:p-6 relative`}>
-                  <button
-                    onClick={() => setSelectedCourse(null)}
-                    className="absolute top-4 right-4 text-white hover:bg-white/20 rounded-full p-2 transition-colors"
-                  >
-                    <FaTimes className="text-xl" />
-                  </button>
-                  <div className="flex items-center space-x-4 text-white">
-                    <div className="text-5xl">
-                      {selectedCourse.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-3xl font-bold">{selectedCourse.title}</h3>
-                      <p className="text-white/90 mt-2">{selectedCourse.description}</p>
+                <div className="relative">
+                  {/* Image Background */}
+                  <div className="h-56 relative overflow-hidden">
+                    <img 
+                      src={selectedCourse.image} 
+                      alt={selectedCourse.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-r ${selectedCourse.color} opacity-80`} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    
+                    <button
+                      onClick={() => setSelectedCourse(null)}
+                      className="absolute top-4 right-4 text-white hover:bg-white/20 rounded-full p-2 transition-colors z-10"
+                    >
+                      <FaTimes className="text-xl" />
+                    </button>
+                    
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h3 className="text-3xl font-bold mb-2">{selectedCourse.title}</h3>
+                      <p className="text-white/90">{selectedCourse.description}</p>
                     </div>
                   </div>
                 </div>

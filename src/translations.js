@@ -66,6 +66,8 @@ const translations = {
         label: 'Successful University Admissions',
         suffix: '+',
       },
+      studentResults: 'Student Success Stories',
+      studentResultsSubtitle: 'Real results from our dedicated students',
     },
     materials: {
       title: 'Our Books and Materials',
@@ -185,6 +187,8 @@ const translations = {
         label: 'Uğurlu Universitet Qəbulları',
         suffix: '+',
       },
+      studentResults: 'Tələbə Uğur Hekayələri',
+      studentResultsSubtitle: 'Həsr olunmuş tələbələrimizin real nəticələri',
     },
     materials: {
       title: 'Kitablarımız və Materiallarımız',
