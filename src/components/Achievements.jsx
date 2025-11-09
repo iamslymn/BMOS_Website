@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import CountUp from 'react-countup';
@@ -11,6 +11,26 @@ const Achievements = () => {
     threshold: 0.3,
     triggerOnce: true,
   });
+  const [isHovering, setIsHovering] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+  
+  useEffect(() => {
+    // Check if we're on desktop
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+    
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+  
+  // Set animation duration based on device and hover state
+  const getAnimationDuration = () => {
+    if (!isDesktop) return 20; // Faster on mobile/tablet (20s)
+    return isHovering ? 25 : 8; // Very fast on desktop (8s), slower on hover (25s) for better viewing
+  };
   
   // Student results images - duplicate the array for infinite scroll effect
   const studentResults = [
@@ -48,7 +68,7 @@ const Achievements = () => {
   ];
 
   return (
-    <section className="py-20 gradient-bg relative overflow-hidden">
+    <section id="achievements" className="py-20 gradient-bg relative overflow-hidden">
       {/* Animated Background Particles */}
       <div className="absolute inset-0">
         {[...Array(20)].map((_, i) => (
@@ -164,20 +184,24 @@ const Achievements = () => {
           className="mt-16"
         >
           {/* Infinite Scrolling Carousel Container */}
-          <div className="relative overflow-hidden">
+          <div 
+            className="relative overflow-hidden cursor-pointer"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+          >
             {/* Gradient Masks for smooth edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#1a237e] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#1a237e] to-transparent z-10 pointer-events-none" />
+            <div className="absolute left-0 top-0 bottom-0 w-10 sm:w-16 md:w-20 bg-gradient-to-r from-[#1a237e] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-10 sm:w-16 md:w-20 bg-gradient-to-l from-[#1a237e] to-transparent z-10 pointer-events-none" />
             
             {/* Scrolling Container */}
             <motion.div
-              className="flex gap-6"
+              className="flex gap-4 sm:gap-6"
               animate={{
                 x: ['0%', '-50%'],
               }}
               transition={{
                 x: {
-                  duration: 30,
+                  duration: getAnimationDuration(),
                   repeat: Infinity,
                   ease: "linear",
                   repeatType: "loop",
@@ -188,17 +212,17 @@ const Achievements = () => {
               {[...duplicatedResults, ...duplicatedResults].map((result, index) => (
                 <div
                   key={`${result.id}-${index}`}
-                  className="flex-shrink-0 w-96 group" // w-96 = 384px
+                  className="flex-shrink-0 w-72 sm:w-80 md:w-96 group" // Responsive widths: 288px mobile, 320px tablet, 384px desktop
                 >
-                  <div className="relative overflow-hidden rounded-xl transition-all duration-300 transform group-hover:scale-105 group-hover:shadow-2xl">
+                  <div className="relative overflow-hidden rounded-xl transition-all duration-500 transform group-hover:scale-105 group-hover:shadow-2xl">
                     <img
                       src={result.image}
                       alt={result.alt}
-                      className="w-[384px] h-[392px] object-cover"
+                      className="w-72 h-[294px] sm:w-80 sm:h-[326px] md:w-[384px] md:h-[392px] object-cover"
                       style={{ objectPosition: 'center' }}
                     />
-                    {/* Optional: Add a subtle overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Subtle overlay on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   </div>
                 </div>
               ))}

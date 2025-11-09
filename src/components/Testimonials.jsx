@@ -46,7 +46,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <section className="py-20 bg-white relative overflow-hidden" ref={ref}>
+    <section id="testimonials" className="py-20 bg-white relative overflow-hidden" ref={ref}>
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{

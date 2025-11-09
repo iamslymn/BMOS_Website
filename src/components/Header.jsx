@@ -13,7 +13,7 @@ const Header = () => {
       setScrolled(window.scrollY > 50);
       
       // Determine active section based on scroll position
-      const sections = ['hero', 'courses', 'mission', 'materials', 'contact'];
+      const sections = ['hero', 'courses', 'mission', 'achievements', 'materials', 'testimonials', 'contact'];
       const scrollPosition = window.scrollY + 100; // Add offset for header height
       
       for (const section of sections) {
@@ -94,51 +94,31 @@ const Header = () => {
           <nav className="hidden lg:flex lg:items-center lg:justify-center lg:space-x-2">
             <button
               onClick={() => scrollToSection('hero')}
-              className={`px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium ${
-                activeSection === 'hero' 
-                  ? 'bg-orange-500' 
-                  : 'hover:bg-orange-500/80'
-              }`}
+              className="px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium hover:text-orange-300"
             >
               {t('nav.home')}
             </button>
             <button
               onClick={() => scrollToSection('courses')}
-              className={`px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium ${
-                activeSection === 'courses' 
-                  ? 'bg-orange-500' 
-                  : 'hover:bg-orange-500/80'
-              }`}
+              className="px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium hover:text-orange-300"
             >
               {t('nav.courses')}
             </button>
             <button
               onClick={() => scrollToSection('mission')}
-              className={`px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium ${
-                activeSection === 'mission' 
-                  ? 'bg-orange-500' 
-                  : 'hover:bg-orange-500/80'
-              }`}
+              className="px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium hover:text-orange-300"
             >
               {t('nav.about')}
             </button>
             <button
               onClick={() => scrollToSection('materials')}
-              className={`px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium ${
-                activeSection === 'materials' 
-                  ? 'bg-orange-500' 
-                  : 'hover:bg-orange-500/80'
-              }`}
+              className="px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium hover:text-orange-300"
             >
               {t('nav.materials')}
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className={`px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium ${
-                activeSection === 'contact' 
-                  ? 'bg-orange-500' 
-                  : 'hover:bg-orange-500/80'
-              }`}
+              className="px-4 py-2 rounded-lg text-base text-white transition-all duration-200 font-medium hover:text-orange-300"
             >
               {t('nav.contact')}
             </button>
@@ -188,51 +168,31 @@ const Header = () => {
           >
             <button
               onClick={() => scrollToSection('hero')}
-              className={`block w-full text-left px-4 py-2 transition-all duration-200 ${
-                activeSection === 'hero'
-                  ? 'bg-orange-500 text-white'
-                  : 'text-gray-700 hover:bg-orange-500/20'
-              }`}
+              className="block w-full text-left px-4 py-2 transition-all duration-200 text-gray-700 hover:text-orange-500"
             >
               {t('nav.home')}
             </button>
             <button
               onClick={() => scrollToSection('courses')}
-              className={`block w-full text-left px-4 py-2 transition-all duration-200 ${
-                activeSection === 'courses'
-                  ? 'bg-orange-500 text-white'
-                  : 'text-gray-700 hover:bg-orange-500/20'
-              }`}
+              className="block w-full text-left px-4 py-2 transition-all duration-200 text-gray-700 hover:text-orange-500"
             >
               {t('nav.courses')}
             </button>
             <button
               onClick={() => scrollToSection('mission')}
-              className={`block w-full text-left px-4 py-2 transition-all duration-200 ${
-                activeSection === 'mission'
-                  ? 'bg-orange-500 text-white'
-                  : 'text-gray-700 hover:bg-orange-500/20'
-              }`}
+              className="block w-full text-left px-4 py-2 transition-all duration-200 text-gray-700 hover:text-orange-500"
             >
               {t('nav.about')}
             </button>
             <button
               onClick={() => scrollToSection('materials')}
-              className={`block w-full text-left px-4 py-2 transition-all duration-200 ${
-                activeSection === 'materials'
-                  ? 'bg-orange-500 text-white'
-                  : 'text-gray-700 hover:bg-orange-500/20'
-              }`}
+              className="block w-full text-left px-4 py-2 transition-all duration-200 text-gray-700 hover:text-orange-500"
             >
               {t('nav.materials')}
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className={`block w-full text-left px-4 py-2 transition-all duration-200 ${
-                activeSection === 'contact'
-                  ? 'bg-orange-500 text-white'
-                  : 'text-gray-700 hover:bg-orange-500/20'
-              }`}
+              className="block w-full text-left px-4 py-2 transition-all duration-200 text-gray-700 hover:text-orange-500"
             >
               {t('nav.contact')}
             </button>
